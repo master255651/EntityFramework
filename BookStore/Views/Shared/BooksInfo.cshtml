@@ -1,0 +1,22 @@
+﻿@model Book
+
+<li>
+    <a href="/Book/BookDetails/@Model.Id">
+        <div class="flex-container">
+            <div> <img src="/@Model.Image" /> </div>
+            <div>
+                <p>
+                    <b>@Model.Title</b><br />
+                    by <b>@Model.Author.FirstName @Model.Author.LastName</b><br />
+                    Price: <b style="color: red">@Model.Price.ToString("c")</b><br />
+                    <b>Category:</b> @foreach (var category in Model.Categories)
+                    {
+                        @category.Title;
+                        <span> </span>
+                    }<br />
+                    <b>Description:</b> @Model.Description
+                </p>
+            </div>
+        </div>
+    </a>
+</li>

@@ -1,0 +1,42 @@
+﻿@model ReviewBookViewModel
+
+<h2>BookDetails: </h2>
+<hr style="height:2px;border-width:0;color:gray;background-color:gray" />
+
+<div class="addInfoBookFlex2">
+    <div class="addInfoBookFlex">
+        <div>
+            <img style="width: 300px;" src="/@Model.Book.Image" />
+        </div>
+    </div>
+    <div>
+        <p>
+            <span class="spanProperty">Title: </span><b>@Model.Book.Title</b><br />
+            <span class="spanProperty">Author: </span><b>@Model.Book.Author.FirstName @Model.Book.Author.LastName</b><br />
+            <span class="spanProperty">Price: </span><b style="color: red">@Model.Book.Price.ToString("c")</b><br />
+            <span class="spanProperty">Category: </span>@foreach (var category in Model.Book.Categories)
+            {
+                @category.Title;
+                <span> </span>
+            }<br />
+            <span class="spanProperty">Description: </span>@Model.Book.Description
+        </p>
+    </div>
+</div>
+
+<h2>Reviews: </h2>
+<hr style="height:2px;border-width:0;color:gray;background-color:gray" />
+@foreach (var review in Model.Reviews)
+            {
+<div style="margin: 10px;">
+    <b>@review.Author</b><span style="float: right; color: gray; font-style: italic;">Published: @review.PublishDate.ToString()</span><br />
+    @review.Content
+</div>
+                
+            }
+@if(Model.Reviews.Count() == 0)
+            {
+<div style="margin: 10px;">
+    This book does not have reviews
+</div>
+            }

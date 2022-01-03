@@ -1,0 +1,42 @@
+﻿@model BooksCategoriesAuthorsViewModel
+@{
+    ViewData["Title"] = "Books Page";
+}
+
+<div style="display: flex; align-items: stretch;">
+    <div style="flex-grow: 2; margin: 10px">
+        <h2>Categories: </h2>
+        <hr style="height:2px;border-width:0;color:gray;background-color:gray" />
+
+        <ul class="category-list">
+            @foreach (Category category in Model.AllCategories)
+            {
+                <li><a href="/Category/CategoryBooks/@category.Id">@category.Title</a><span>@Model.Categories.BooksOfCategory(Model.AllBooks, category.Id).Count()</span></li>
+            }
+        </ul>
+
+        <h2>Authors: </h2>
+        <hr style="height:2px;border-width:0;color:gray;background-color:gray" />
+
+        <ul class="category-list">
+            @foreach (Author author in Model.AllAuthors)
+            {
+            <li><a href="/Author/AuthorBooks/@author.Id">@author.FirstName.First() @author.LastName</a><span>@Model.Author.BooksOfAuthor(Model.AllBooks, author.Id).Count()</span></li>
+            }
+        </ul>
+    </div>
+
+    <div style="flex-grow: 4; margin-left: 5%">
+        <h2>Books: </h2>
+        <button class="button button5" onclick="window.location.href ='https://localhost:44321/Pages/1'">1</button>
+        <button class="button button5" onclick="window.location.href ='https://localhost:44321/Pages/2'">2</button>
+        <hr style="height:2px;border-width:0;color:gray;background-color:gray" />
+
+        <ul class="older">
+            @foreach (Book book in Model.NeededBooks)
+            {
+                @Html.Partial("BooksInfo", book)
+            }
+        </ul>
+    </div>
+</div>

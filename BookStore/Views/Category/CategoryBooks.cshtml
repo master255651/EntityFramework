@@ -1,0 +1,11 @@
+﻿@model IEnumerable<Book>
+
+<h2>Category: @Model.First().Categories.First().Title</h2>
+<hr style="height:2px;border-width:0;color:gray;background-color:gray" />
+
+<ul class="older">
+    @foreach (Book book in Model)
+    {
+        @Html.Partial("BooksInfo", book)
+    }
+</ul>
